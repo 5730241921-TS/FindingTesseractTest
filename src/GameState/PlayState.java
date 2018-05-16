@@ -45,8 +45,8 @@ public class PlayState extends GameState {
 	private long startTime;
 
 	private int addCount;
-	private int BomberBirdTime;
-	private int minBomberBirdTime;
+	private int TesseractTime;
+	private int minTesseractTime;
 	private boolean hasDecrease;
 
 	private boolean pause, alreadyPause;
@@ -71,8 +71,8 @@ public class PlayState extends GameState {
 
 		enemies = new ArrayList<Enemy>();
 		addCount = 0;
-		BomberBirdTime = 8;
-		minBomberBirdTime = 2;
+		TesseractTime = 8;
+		minTesseractTime = 2;
 
 		explosions = new ArrayList<Explosion>();
 		// bgMusic = new AudioPlayer("/SFX/coin.wav");
@@ -85,7 +85,7 @@ public class PlayState extends GameState {
 
 		Random rand = new Random();
 		int yBombBird;
-		if (addCount % BomberBirdTime == 0) {
+		if (addCount % TesseractTime == 0) {
 			yBombBird = 100 + rand.nextInt(325);
 		} else {
 			yBombBird = 0;
@@ -100,7 +100,7 @@ public class PlayState extends GameState {
 		enemies.add(b);
 		addCount++;
 
-		if (addCount % BomberBirdTime == 0)
+		if (addCount % TesseractTime == 0)
 			enemies.add(d);
 
 	}
@@ -119,11 +119,11 @@ public class PlayState extends GameState {
 			if ((int) (elapsed / 1000) > 2) {
 				if ((int) ((player.getTime() % 3600) / 60) % 10 == 0 && ((player.getTime() % 3600) / 60) > 0) {
 					if (!hasDecrease) {
-						BomberBirdTime -= 2;
+						TesseractTime -= 2;
 						hasDecrease = true;
 					}
-					if (BomberBirdTime < minBomberBirdTime)
-						BomberBirdTime = minBomberBirdTime;
+					if (TesseractTime < minTesseractTime)
+						TesseractTime = minTesseractTime;
 				}
 				if ((int) ((player.getTime() % 3600) / 60) % 10 != 0 && ((player.getTime() % 3600) / 60) > 0) {
 					hasDecrease = false;
